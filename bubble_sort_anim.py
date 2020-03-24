@@ -8,7 +8,7 @@ class Bubble_sort_anim:
         self._max = max
         self._fig = plt.figure()
         self._x = [x for x in range(0,max)]
-        self._y = [2,5,6,2,31,24,9,8,3,10]
+        self._y = np.random.randint(0,max*4,max)
         self._plot = plt.bar(self._x,self._y)
         self._frame = max - 1
         self._anim = None

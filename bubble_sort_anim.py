@@ -1,7 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.animation import FuncAnimation
-from Sorts import bubble_sort
 
 
 class Bubble_sort_anim:
@@ -14,18 +13,23 @@ class Bubble_sort_anim:
         self._frame = max - 1
         self._anim = None
 
-
+        #making The window appear fullScreen
         figManager = plt.get_current_fig_manager()
         figManager.window.showMaximized()
 
     def start_anim(self):
-        self._anim = FuncAnimation(self._fig, self.animate,frames=self._frame, interval=300,repeat=True)
+        #Starting and then showing the plot animation
+        self._anim = FuncAnimation(self._fig, self.animate,frames=self._frame, interval=100,repeat=True)
         plt.show()
 
+    def stop_anim(self):
+        self._anim.event_source.stop()
 
     def animate(self,i):
+        #first setting all the Bars color to original Blue
         for p in self._x:
             self._plot[p].set_color('b')
+        #The animation logic
         if( i <= self._frame ):
             self._plot[i].set_color('r')
             self._plot[i+1].set_color('g')
@@ -33,8 +37,14 @@ class Bubble_sort_anim:
                 self._y[i], self._y[i+1] = self._y[i + 1], self._y[i]
                 self._plot[i].set_height(self._y[i])
                 self._plot[i+1].set_height(self._y[i+1])
+        #decresing the frame 
         if( i+1 == self._frame ):
             self._frame = self._frame - 1
+        #Implementing the end logic
+        if( self._frame == 0):
+            for p in self._x:
+                self._plot[p].set_color('g')
+                self.stop_anim()
 
         return self._plot
 

@@ -1,6 +1,6 @@
 from tkinter import *
 from tkinter import ttk
-from bubble_sort_anim import Bubble_sort_anim
+from Animations import Bubble_sort_anim
 
 class SortVisualizer:
     def __init__(self, master):

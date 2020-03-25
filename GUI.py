@@ -27,12 +27,12 @@ class SortVisualizer:
         startButton.grid(row=0, column=2, rowspan=2,padx=50)
 
     def size_valiator(self,inpt):
-        return inpt.isdigit() and int(inpt) > 2 and int(inpt) < 51 or inpt == ""
+        return inpt.isdigit() and int(inpt) > 1 and int(inpt) < 51 or inpt == ""
     def button_command(self):
         input = self._sizeEntry.get()
         if input is not "":
             size = int(input)
-            anim = Bubble_sort_anim(size)
+            anim = Bubble_sort_anim(size,100)
             anim.start_anim()
 
 def main():

@@ -96,13 +96,15 @@ class Insertion_sort_anim:
         print(i)
         for p in self._x:
             self._plot[p].set_color('b')
+
+
         if self._frame == self._max:
             self.stop_anim()
             for p in self._x:
                 self._plot[p].set_color('g')
             return self._plot
         self._plot[i].set_color('r')
-        self._plot[i-1].set_color('g')
+        self._plot[i-1].set_color('y')
 
         if  i == 0 :
             self._frame += 1
@@ -121,7 +123,7 @@ class Insertion_sort_anim:
 
 
 def main():
-    anim1 = Insertion_sort_anim(15,100)
+    anim1 = Bubble_sort_anim(50,50)
     anim1.start_anim()
 
 if __name__ == "__main__" : main()

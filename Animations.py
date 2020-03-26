@@ -96,7 +96,8 @@ class Insertion_sort_anim:
         print(i)
         for p in self._x:
             self._plot[p].set_color('b')
-
+        for p in range(self._frame):
+            self._plot[p].set_color('g')
 
         if self._frame == self._max:
             self.stop_anim()

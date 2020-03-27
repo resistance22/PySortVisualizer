@@ -12,9 +12,6 @@ class Anim:
         self._interval = interval
         self._frame = 0
         self._anim = None
-        #making The window appear fullScreen
-        figManager = plt.get_current_fig_manager()
-        figManager.window.showMaximized()
 
 
     def start_anim(self):

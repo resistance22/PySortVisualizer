@@ -49,6 +49,7 @@ class SortVisualizer:
             anim.start_anim()
 def main():
     root = Tk()
+    root.title('Py Sort Visualizer')
     SortVisualizer(root)
     root.mainloop()
 

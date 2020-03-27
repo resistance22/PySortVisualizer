@@ -37,15 +37,15 @@ class SortVisualizer:
             print("empty")
         elif sort == "Bubble":
             size = int(input)
-            anim = Bubble_sort_anim(size,10)
+            anim = Bubble_sort_anim(size,150)
             anim.start_anim()
         elif sort == "Selection":
             size = int(input)
-            anim = Selection_sort_anim(size,10)
+            anim = Selection_sort_anim(size,150)
             anim.start_anim()
         elif sort == "Insertion":
             size = int(input)
-            anim = Insertion_sort_anim(size,10)
+            anim = Insertion_sort_anim(size,150)
             anim.start_anim()
 def main():
     root = Tk()

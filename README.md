@@ -8,6 +8,6 @@ python3 GUI.py
 ```
 specify the array size between 2 and 50,select the sort algorithm ,click sort and voilà :ok_hand:
 
-####To Do
+#### To Do
 - [ ] Add Quick Sort algorithm
-- [] Add Animation speed field
+- [ ] Add Animation speed field

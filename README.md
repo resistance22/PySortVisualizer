@@ -10,6 +10,7 @@ pip install requirements.txt
 python3 GUI.py
 ```
 specify the array size between 2 and 50,select the sort algorithm ,click sort and voilà :ok_hand:
+
 So far the application can visualize below algorithms:
 * Insertion Sort
 * Bubble Sort

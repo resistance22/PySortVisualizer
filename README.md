@@ -5,6 +5,9 @@
 A Sorting Algorithm Visualizer written in Python for educational purpose.
 
 ## Installation & Usage
+You need to have tk installed on your machine.
+
+After Installing tk on your computer then:
 ```
 pip install requirements.txt
 python3 GUI.py

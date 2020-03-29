@@ -2,43 +2,47 @@ import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.animation import FuncAnimation
 
+
 class Anim:
-    def __init__(self,max,interval=200):
+    def __init__(self, max, interval=200):
         self._max = max
         self._fig = plt.figure()
-        self._x = [x for x in range(0,max)]
-        self._y = np.random.randint(0,max*4,max)
-        self._plot = plt.bar(self._x,self._y)
+        self._x = [x for x in range(0, max)]
+        self._y = np.random.randint(0, max*4, max)
+        self._plot = plt.bar(self._x, self._y)
         self._interval = interval
         self._frame = 0
         self._anim = None
 
-
     def start_anim(self):
-        #Starting and then showing the plot animation
-        self._anim = FuncAnimation(self._fig, self.animate,frames=self.frame_generator, interval=self._interval,repeat=True)
+        # Starting and then showing the plot animation
+        self._anim = FuncAnimation(
+            self._fig,
+            self.animate,
+            frames=self.frame_generator,
+            interval=self._interval,
+            repeat=True
+        )
         plt.show()
 
     def stop_anim(self):
         self._anim.event_source.stop()
 
-
     def frame_generator(self):
         for i in range(20):
             yield i
 
-    def animate(self,i):
+    def animate(self, i):
         return self._plot
 
-
     def restart_anime(self):
-        self._anim.frame_seq = self._anim.new_frame_seq() 
+        self._anim.frame_seq = self._anim.new_frame_seq()
+
 
 class Bubble_sort_anim(Anim):
-    def __init__(self,max,interval):
-        super().__init__(max,interval)
+    def __init__(self, max, interval):
+        super().__init__(max, interval)
         self._frame = max - 1
-
 
     def frame_generator(self):
         f = 0
@@ -46,22 +50,23 @@ class Bubble_sort_anim(Anim):
             yield f
             f += 1
 
-    def animate(self,i):
-        #first setting all the Bars color to original Blue
+    def animate(self, i):
+        # first setting all the Bars color to original Blue
         for p in self._x:
             self._plot[p].set_color('b')
-        #The animation logic
+        # The animation logic
         self._plot[i].set_color('r')
         self._plot[i+1].set_color('g')
-        if( self._y[i] > self._y[i+1] ):
+        if self._y[i] > self._y[i+1]:
             self._y[i], self._y[i+1] = self._y[i + 1], self._y[i]
             self._plot[i].set_height(self._y[i])
             self._plot[i+1].set_height(self._y[i+1])
-        #decresing the frame 
-        if( i+1 == self._frame ):
+        # decresing the frame
+        if i+1 == self._frame:
             self._frame = self._frame - 1
-        #Implementing the end logic
-        if( self._frame == 0):
+
+        # Implementing the end logic
+        if self._frame == 0:
             for p in self._x:
                 self._plot[p].set_color('g')
                 self.stop_anim()
@@ -69,19 +74,16 @@ class Bubble_sort_anim(Anim):
         return self._plot
 
 
-
 class Insertion_sort_anim(Anim):
-    def __init__(self,max,interval):
-        super().__init__(max,interval)
+    def __init__(self, max, interval):
+        super().__init__(max, interval)
         self._frame = 1
 
-
     def frame_generator(self):
-        for i in range(self._frame,0,-1):
-            yield i    
+        for i in range(self._frame, 0, -1):
+            yield i
 
-
-    def animate(self,i):
+    def animate(self, i):
         for p in self._x:
             self._plot[p].set_color('b')
         for p in range(self._frame):
@@ -95,45 +97,34 @@ class Insertion_sort_anim(Anim):
         self._plot[i].set_color('r')
         self._plot[i-1].set_color('y')
 
-        if  i == 0 :
+        if i == 0:
             self._frame += 1
             self.restart_anime()
-        elif  self._y[i] < self._y[i-1]:
+        elif self._y[i] < self._y[i-1]:
             self._y[i], self._y[i-1] = self._y[i - 1], self._y[i]
             self._plot[i].set_height(self._y[i])
             self._plot[i-1].set_height(self._y[i-1])
         elif self._y[i] >= self._y[i-1]:
             self._frame += 1
             self.restart_anime()
-
-
-
         return self._plot
 
 
-
-
-
-
-
-
 class Selection_sort_anim(Anim):
-    def __init__(self,max,interval):
-        super().__init__(max,interval)
+    def __init__(self, max, interval):
+        super().__init__(max, interval)
         self._index = 0
 
-
     def frame_generator(self):
-        for f in range(self._frame,self._max):
+        for f in range(self._frame, self._max):
             yield f
             f += 1
 
-
-    def animate(self,i):
+    def animate(self, i):
         for p in self._x:
             self._plot[p].set_color('b')
 
-        for p in range(0,self._frame):
+        for p in range(0, self._frame):
             self._plot[p].set_color('g')
         self._plot[self._index].set_color('r')
         self._plot[i].set_color('y')
@@ -149,7 +140,10 @@ class Selection_sort_anim(Anim):
             self._plot[i].set_color('r')
 
         if i == self._max - 1:
-            self._y[self._frame],self._y[self._index] = self._y[self._index],self._y[self._frame]
+            # swaping the values
+            self._y[self._frame], self._y[self._index] = \
+                self._y[self._index],\
+                self._y[self._frame]
             self._plot[self._frame].set_height(self._y[self._frame])
             self._plot[self._index].set_height(self._y[self._index])
 
@@ -159,17 +153,10 @@ class Selection_sort_anim(Anim):
         return self._plot
 
 
-
-
-
 def main():
-    anim1 = Insertion_sort_anim(20,50)
+    anim1 = Insertion_sort_anim(20, 50)
     anim1.start_anim()
 
-if __name__ == "__main__" : main()
-        
-   
 
-
-
-
+if __name__ == "__main__":
+    main()
